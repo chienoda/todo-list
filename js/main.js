@@ -12,8 +12,8 @@ var todoList = {
 		this.displayTodos();
 	},
 
-	changeTodo: function(i, newValue) {
-		this.todos[i] = newValue;
+	changeTodo: function(i, todoText) {
+		this.todos[i].todoText = todoText;
 		this.displayTodos();
 	},
 
