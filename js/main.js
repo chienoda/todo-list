@@ -1,11 +1,14 @@
 var todoList = {
-	todos: ["item1", "item2", "item3", "item4"],
+	todos: [],
 	displayTodos: function() {
 		console.log('Mytodos: ', this.todos);
 	},
 
-	addTodo: function(todo) {
-		this.todos.push(todo);
+	addTodo: function(todoText) {
+		this.todos.push({
+			todoText: todoText,
+			completed: false
+		});
 		this.displayTodos();
 	},
 
