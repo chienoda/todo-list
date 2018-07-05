@@ -3,7 +3,6 @@ var todoList = {
 	displayTodos: function() {
 		console.log('Mytodos: ', this.todos);
 	},
-
 	addTodo: function(todoText) {
 		this.todos.push({
 			todoText: todoText,
@@ -11,16 +10,18 @@ var todoList = {
 		});
 		this.displayTodos();
 	},
-
 	changeTodo: function(i, todoText) {
 		this.todos[i].todoText = todoText;
 		this.displayTodos();
 	},
-
-	deleteTodo(i) {
+	deleteTodo: function(i) {
 		this.todos.splice(i, 1);
 		this.displayTodos();
-	}
-
+	},
+	toggleCompleted: function(i) {
+		var todo = this.todos[i];
+		todo.completed = !todo.completed;
+		this.displayTodos();
+	} 
 };
 
