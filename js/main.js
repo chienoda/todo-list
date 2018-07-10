@@ -85,3 +85,8 @@ var handlers = {
 		toggleCompletedPositionInput.value = '';
 	}, 
 };
+
+var todoLi = document.createElement('li');
+var todosUl = document.createElement('ul');
+todosUl.appendChild(todoLi);
+
