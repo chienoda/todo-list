@@ -1,38 +1,20 @@
 var todoList = {
 	todos: [],
-	displayTodos: function() {
-		if (this.todos.length === 0) {
-			console.log('Your todo list is empty!')
-		} else {
-			console.log('Mytodos:');
-			for (var i = 0; i<this.todos.length; i++) {
-				if (this.todos[i].completed ===true) {
-					console.log( '(x)', this.todos[i].todoText);
-				} else {
-					console.log( '( )', this.todos[i].todoText);
-				}
-		    }
-		}
-	},
 	addTodo: function(todoText) {
 		this.todos.push({
 			todoText: todoText,
 			completed: false
 		});
-		this.displayTodos();
 	},
 	changeTodo: function(i, todoText) {
 		this.todos[i].todoText = todoText;
-		this.displayTodos();
 	},
 	deleteTodo: function(i) {
 		this.todos.splice(i, 1);
-		this.displayTodos();
 	},
 	toggleCompleted: function(i) {
 		var todo = this.todos[i];
 		todo.completed = !todo.completed;
-		this.displayTodos();
 	},
 	toggleAll: function() {
 		var totalTodos = this.todos.length;
@@ -52,54 +34,57 @@ var todoList = {
 				this.todos[i].completed = true;
 			}
 		}
-		this.displayTodos();
 	}
 };
 
 var handlers = {
-	displayTodos: function () {
-		todoList.displayTodos();
-	},
-	toggleAll: function () {
-		todoList.toggleAll();
-	},
 	addTodo: function() {
 		var addTodoTextInput = document.getElementById('addTodoTextInput');
 		todoList.addTodo(addTodoTextInput.value);
 		addTodoTextInput.value = '';
+		view.displayTodos();
 	},
 	changeTodo: function() {
 		var changeTodoTextInput = document.getElementById('changeTodoTextInput');
 		todoList.changeTodo(changeTodoPositionInput.valueAsNumber, changeTodoTextInput.value);
 		changeTodoPositionInput.value = '';
 		changeTodoTextInput.value = '';
+		view.displayTodos();
+
 	}, 
 	deleteTodo: function() {
 		var deleteTodoPositionInput = document.getElementById('deleteTodoPositionInput');
 		todoList.deleteTodo(deleteTodoPositionInput.valueAsNumber);
 		deleteTodoPositionInput.value = '';
+		view.displayTodos();
+
 	}, 
 	toggleCompleted: function() {
 		var toggleCompletedPositionInput = document.getElementById('toggleCompletedPositionInput');
 		todoList.toggleCompleted(toggleCompletedPositionInput.valueAsNumber);
 		toggleCompletedPositionInput.value = '';
+		view.displayTodos();
+
 	}, 
+	toggleAll: function () {
+		todoList.toggleAll();
+		view.displayTodos();
+	},
 };
 
 var view = {
 	displayTodos: function () {
 		var todosUl = document.querySelector('ul');
-		todosUl.innnerHTML = '';
-
+		todosUl.innerHTML = '';
 		for (var i = 0; i < todoList.todos.length; i++) {
 			var todoLi = document.createElement('li');
 			var todo = todoList.todos[i];
 			var todoTextWithCompletion = '';
 
-			if (todo.completed ===true) {
-				todoTextWithCompletion =  '(x)' + todo.todoText;
+			if (todo.completed === true) {
+				todoTextWithCompletion =  '(x) ' + todo.todoText;
 				} else {
-					todoTextWithCompletion =  '( )' + todo.todoText;
+					todoTextWithCompletion =  '( ) ' + todo.todoText;
 				}
 
 			todoLi.textContent = todoTextWithCompletion;
