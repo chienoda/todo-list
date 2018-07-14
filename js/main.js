@@ -97,8 +97,14 @@ var view = {
 		deleteButton.textContent = 'Delete';
 		deleteButton.className = 'deleteButton';
 		return deleteButton;
-	}
-
+	},
 };
+
+	var todosUl = document.querySelector('ul');
+
+	todosUl.addEventListener('click', function(event) {
+	console.log(event.target.parentNode.id);
+	});
+
 
 
