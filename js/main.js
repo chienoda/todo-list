@@ -20,22 +20,35 @@ var todoList = {
 		var totalTodos = this.todos.length;
 		var completedTodos = 0;
 		//Get number of completed todos
-		for(var i = 0; i > totalTodos; i++) {
-			if (this.todos[i].completed === true) {
-				completedTodos++
+		// for(var i = 0; i > totalTodos; i++) {
+		// 	if (this.todos[i].completed === true) {
+		// 		completedTodos++
+		// 	}
+		// }
+		// if(completedTodos ===totalTodos) {
+		// 	for (var i = 0; i < totalTodos; i++) {
+		// 		this.todos[i].completed = false;
+		// 	}
+		// } else {
+		// 	for (var i = 0; i < totalTodos; i++) {
+		// 		this.todos[i].completed = true;
+		// 	}
+
+		this.todos.forEach(function(item) {
+			if (item.completed === true) {
+				completedTodos++;
 			}
+		});
+
+		this.todos.forEach(function(item) {
+			if(completedTodos === totalTodos) {
+				item.completed = false;
+			} else {
+				item.completed = true;
+			}
+		});
 		}
-		if(completedTodos ===totalTodos) {
-			for (var i = 0; i < totalTodos; i++) {
-				this.todos[i].completed = false;
-			}
-		} else {
-			for (var i = 0; i < totalTodos; i++) {
-				this.todos[i].completed = true;
-			}
-		}
-	}
-};
+	};
 
 var handlers = {
 	addTodo: function() {
